@@ -6,35 +6,26 @@ const page = () => {
   const [itineraryData, setItineraryData] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:8080/api/generate-itinerary')
-      .then(response => response.json())
-      .then(data => setItineraryData(data))
-      .catch(error => console.error('Error fetching data:', error));
+    // Sample data for development
+    const sampleData = [
+      { destination: "Ooty", preferences: "Sightseeing", number_of_days: "5", budget: "15000" },
+      { destination: "Coorg", preferences: "Adventure", number_of_days: "3", budget: "8000" },
+      { destination: "Munnar", preferences: "Relaxation", number_of_days: "4", budget: "12000" },
+    ];
+
+    setItineraryData(sampleData);
   }, []);
 
   const sendItineraryInput = () => {
     const inputData = {
-      destination: "OOty", // Replace with actual data or state
-      preferences: "Site seeing", // Replace with actual data or state
-      number_of_days: "10", // Replace with actual data or state
-      budget: "10000" // Replace with actual data or state
+      destination: "Ooty",
+      preferences: "Sightseeing",
+      number_of_days: "10",
+      budget: "10000"
     };
 
-    fetch('http://localhost:8080/api/generate-itinerary', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(inputData),
-    })
-    .then(response => response.json())
-    .then(data => console.log('Success:', data))
-    .catch((error) => {
-      console.error('Error:', error);
-    });
+    console.log('Input Data:', inputData);
   };
-
-  // Call sendItineraryInput at an appropriate time, e.g., useEffect, button click, etc.
 
   return (
     <div>
@@ -44,6 +35,7 @@ const page = () => {
           <li key={index}>{JSON.stringify(item)}</li>
         ))}
       </ul>
+      <button onClick={sendItineraryInput}>Send Itinerary Input</button>
     </div>
   );
 };

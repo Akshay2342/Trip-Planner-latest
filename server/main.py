@@ -30,6 +30,8 @@ def chatbot():
 @app.route('/api/generate-itinerary', methods=['POST'])
 def generate_itinerary():
     data = request.json
+    print("AJSAY")
+    print(data)
     destination = data.get('destination')
     preferences = data.get('preferences')
     number_of_days = data.get('number_of_days')
@@ -51,4 +53,4 @@ def generate_itinerary():
     return jsonify(response.text)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=8080)
+    app.run(debug=True, port=5001)

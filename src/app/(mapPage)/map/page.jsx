@@ -47,9 +47,54 @@ import ImageAi from '../../../../public/ai-technology.png'
     const [tripData , setTripData] = useState();
     const [formData,setFormData] = useState();
     const searchParams = useSearchParams();
-    const [travelData, setTravelData] = useState(null)
+    // const [travelData, setTravelData] = useState('')
     const [isFormReady, setIsFormReady] = useState(false);
     const [loading,setLoading]=useState(false);
+
+    const [travelData, setTravelData]=useState(`
+      ## Travel Options from Pune to Hyderabad
+---
+
+#  Fastest Way
+##  By Air
+- **Flight Duration:** ~1 hour 15 minutes
+- **Recommended Airlines:**
+  - [IndiGo](https://www.goindigo.in/)
+  - [Air India](https://www.airindia.in/)
+  - [SpiceJet](https://www.spicejet.com/)
+- **Average Cost:** ₹3000 - ₹7000 (one-way)
+
+---
+
+#   Budget Way 
+##  By Train
+- **Train Options:**
+  - **Shatabdi Express (12026)** - ~8 hours
+  - **Hussain Sagar Express (12702)** - ~9 hours
+- **Booking Links:**
+  - [IRCTC](https://www.irctc.co.in/)
+
+---
+
+###  By Bus
+- **Bus Operators:**
+  - Orange Travels
+  - VRL Travels
+  - TSRTC (State Transport)
+- **Booking Links:**
+  - [RedBus](https://www.redbus.in/)
+  - [AbhiBus](https://www.abhibus.com/)
+
+---
+
+##  Tips for Travelers
+-  Flights are the fastest but may cost more; book early for discounts.
+-  Trains offer comfort and are cost-effective for budget travelers.
+-  Buses are widely available and flexible, especially for last-minute plans.
+
+
+      `);
+    
     useEffect(() => {
         const dataParam = searchParams.get('data');
             setFormData(JSON.parse(dataParam));
@@ -202,9 +247,9 @@ import ImageAi from '../../../../public/ai-technology.png'
       async function fetchData() {
         const maxAttempts = 1;
         let attempts = 0;
-    
+          console.log(filteredData)
           try {
-            const response = await axios.post('http://127.0.0.1:5000/generate-itinerary', {
+            const response = await axios.post('http://127.0.0.1:5001/api/generate-itinerary', {
               message: filteredData
             });
             const responseData = response.data;
@@ -406,7 +451,7 @@ import ImageAi from '../../../../public/ai-technology.png'
           let source = formData.source.address;
           let destination = formData.destination.address;
           try {
-            const response = await fetch('http://localhost:5000/generate-travel-options', {
+            const response = await fetch('http://localhost:5001/generate-travel-options', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

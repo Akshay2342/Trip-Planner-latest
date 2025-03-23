@@ -22,7 +22,7 @@
 //   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 //     e.preventDefault();
 //     try {
-//       const res = await fetch("http://localhost:4000/api/chatbot", {
+//       const res = await fetch("http://localhost:50001/api/chatbot", {
 //         method: "POST",
 //         headers: {
 //           "Content-Type": "application/json",
@@ -81,7 +81,7 @@ function Page() {
   const onSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5000/api/chatbot", {
+      const res = await fetch("http://localhost:5001/api/chatbot", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

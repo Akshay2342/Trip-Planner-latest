@@ -75,7 +75,7 @@ const handleGenerate = async () => {
   if (!selectedResponse) return;
   
   try {
-    const response = await axios.post('http://localhost:5000/generate-email', {
+    const response = await axios.post('http://localhost:5001/generate-email', {
       message: selectedResponse.message,
       user_name: selectedResponse.email.split('@')[0], // Example to extract user name from email
     });
